@@ -40,7 +40,5 @@ public class BallCollisionManager : MonoBehaviour
             wallCollisionCount++;
         }
 
-        // Do something comparable for when collisions occur between a ball and a wall.
-        // Hint, the walls have the tag "Wall".
     }
 }
