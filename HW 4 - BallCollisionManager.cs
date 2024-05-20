@@ -11,7 +11,6 @@ public class BallCollisionManager : MonoBehaviour
     private TextMeshPro ballCountText;
     private TextMeshPro wallCountText;
 
-  
     void Start()
     {
         GameObject ballCountGameObject = GameObject.Find("BallCollisionCount");
@@ -21,7 +20,6 @@ public class BallCollisionManager : MonoBehaviour
         wallCountText = wallCountGameObject.GetComponent<TextMeshPro>();
     }
 
-   
     void Update()
     {
         ballCountText.text = "Ball Collision Count: " + ballCollisionCount;
@@ -30,22 +28,30 @@ public class BallCollisionManager : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Ball")
+        // Check for ball collisions
+        if (collision.gameObject.tag == "Ball")
         {
-            ballCollisionCount++;
+            if (this.gameObject.name == "BlackBall")
+            {
+                ballCollisionCount--;
+            }
+            else
+            {
+                ballCollisionCount++;
+            }
         }
 
-        if(collision.gameObject.tag == "Wall")
+        // Check for wall collisions
+        if (collision.gameObject.tag == "Wall")
         {
-            wallCollisionCount++;
-        }
-
-        // Do something comparable for when collisions occur between a ball and a wall.
-        // Hint, the walls have the tag "Wall".
-
-        if (collision.gameObject.tag == "BlackBall")
-        {
-            ballCollisionCount--;
+            if (this.gameObject.name == "BlackBall")
+            {
+                wallCollisionCount--;
+            }
+            else
+            {
+                wallCollisionCount++;
+            }
         }
     }
 }
